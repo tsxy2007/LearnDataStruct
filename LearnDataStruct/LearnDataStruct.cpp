@@ -13,8 +13,12 @@ int main()
 	{
 		a.insert(0,i);
 	}
-	std::cout <<"a.capatity = " << a.capacity() << std::endl;
-	//a.output(std::cout);
+	for (int i = 0; i < 15; i++)
+	{
+		a.erase(0);
+	}
+	int capacity =a.capacity();
+	std::cout <<"a.capatity = " << capacity << std::endl;
 	std::cout << a << std::endl;
 
 

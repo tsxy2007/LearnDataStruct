@@ -43,6 +43,9 @@ protected:
 	//开辟空间为原来的两倍
 	void changeLengh1D( T* SrcElement, int OldSize, int NewSize);
 
+	//开辟空间为原来的一半
+	void changeLengh2D(T* SrcElement, int OldSize, int NewSize);
+
 	T* element;// 存储线性表元素的一维数组
 	int arrayLength; // 一维数组的容量
 	int listSize;//线性表的元素个数
@@ -98,6 +101,12 @@ inline void arrayList<T>::erase(int theIndex)
 	// 有效索引，移动其索引大于theIndex的元素
 	std::copy(element + theIndex + 1, element + listSize, element + theIndex);
 	element[--listSize].~T();
+	int half = arrayLength / 4;
+	if (listSize == half)
+	{
+		changeLengh2D(element, listSize, half * 2);
+		arrayLength = half * 2;
+	}
 }
 
 template<typename T>
@@ -167,6 +176,25 @@ inline void arrayList<T>::changeLengh1D(T* SrcElement, int OldSize, int NewSize)
 	}
 
 	int number = std::max(OldSize, NewSize); 
+	T* newElement = new T[number];
+	std::copy(SrcElement, SrcElement + OldSize, newElement);
+
+	delete[] element;
+
+	element = newElement;
+}
+
+template<typename T>
+inline void arrayList<T>::changeLengh2D(T* SrcElement, int OldSize, int NewSize)
+{
+	if (NewSize < OldSize)
+	{
+		std::ostringstream s;
+		s << "NewSize = " << NewSize << " samller than oldSize " << OldSize;
+		throw illegalParameterValue(s.str());
+	}
+
+	int number = std::max(OldSize, NewSize);
 	T* newElement = new T[number];
 	std::copy(SrcElement, SrcElement + OldSize, newElement);
 
