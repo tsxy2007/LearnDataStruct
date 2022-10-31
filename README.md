@@ -1,4 +1,4 @@
-Ìí¼ÓÄ£¿é²½Öè£º
-1.ÔÚLearnDataStructÄ¿Â¼ÏÂµÄCMakeList.txtÌí¼ÓÄ¿Â¼£º±ÈÈçadd_subdirectory ("arrayList_02")
-2.Ìí¼ÓÄ¿Â¼arrayList_02
-3.ÔÚÄ¿Â¼arrayList_02Ìí¼Ó×Ô¼ºµÄCMakeList.txt²¢Ìí¼Ó×Ô¼ºµÄmain·½·¨;
+æ·»åŠ æ¨¡å—æ­¥éª¤ï¼š   
+1.åœ¨LearnDataStructç›®å½•ä¸‹çš„CMakeList.txtæ·»åŠ ç›®å½•ï¼šæ¯”å¦‚add_subdirectory ("arrayList_02")   
+2.æ·»åŠ ç›®å½•arrayList_02   
+3.åœ¨ç›®å½•arrayList_02æ·»åŠ è‡ªå·±çš„CMakeList.txtå¹¶æ·»åŠ è‡ªå·±çš„mainæ–¹æ³•;   
