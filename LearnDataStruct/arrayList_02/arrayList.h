@@ -206,10 +206,11 @@ std::ostream& operator<<(std::ostream& os,const arrayList<T>& InArray)
 {
 	// TODO: insert return statement here
 	arrayList<T> tmpArray = InArray;
-	for (iterator<T> iter = tmpArray.begin(); iter != tmpArray.end(); iter++)
+	for (auto iter : tmpArray)
 	{
-		os << *iter << std::endl;
+		os << iter << ' ';
 	}
+	std::cout << std::endl;
 	return os;
 }
 

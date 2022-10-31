@@ -3,7 +3,7 @@
 
 #include "LearnDataStruct.h"
 #include "arrayList.h"
-
+#include <vector>
 int main()
 {
 	arrayList<int> a(10);
@@ -24,6 +24,12 @@ int main()
 	for (int i = 0; i < a.size(); i++)
 	{
 		std::cout << a[i] << ' ';
+	}
+	std::cout << std::endl;
+
+	for (auto i : a)
+	{
+		std::cout << (i) << ' ';
 	}
 	std::cout << std::endl;
 	return 0;
