@@ -2,6 +2,13 @@
 #include "linearList.h"
 #include <sstream>
 #include "illegalParameterValue.h"
+#include <iostream>
+
+template<typename T>
+class arrayList;
+
+template<typename T>
+std::ostream& operator<<(std::ostream&, const arrayList<T>&);
 
 template<typename T>
 class arrayList : public linearList<T>
@@ -23,9 +30,12 @@ public:
 	int indexOf(const T& theElement) const;
 	void erase(int theIndex);
 	void insert(int theIndex, const T& theElement);
-	void output(std::ostream& out) const;
 	//
 	int capacity()const { return arrayLength; }
+
+	// 涉指对于这个特定的 T 的全特化 
+	friend std::ostream& operator<< <T>(std::ostream& out, const arrayList<T>& InArray);
+	
 protected:
 	// 若索引无效则抛出异常
 	void checkIndex(int theIndex) const;
@@ -117,19 +127,22 @@ inline void arrayList<T>::insert(int theIndex, const T& theElement)
 }
 
 template<typename T>
-inline void arrayList<T>::output(std::ostream& out) const
+std::ostream& operator<<(std::ostream& os,const arrayList<T>& InArray)
 {
-	for (size_t i = 0; i < listSize; i++)
+	// TODO: insert return statement here
+	int size = InArray.size();
+	for (size_t i = 0; i < size; i++)
 	{
-		if (i==(listSize-1))
+		if (i == (size - 1))
 		{
-			out << element[i];
+			os << InArray.element[i];
 		}
 		else
 		{
-			out << element[i] << std::endl;
+			os << InArray.element[i] << std::endl;
 		}
 	}
+	return os;
 }
 
 template<typename T>
@@ -146,8 +159,6 @@ inline void arrayList<T>::checkIndex(int theIndex) const
 template<typename T>
 inline void arrayList<T>::changeLengh1D(T* SrcElement, int OldSize, int NewSize)
 {
-	
-
 	if (NewSize < OldSize)
 	{
 		std::ostringstream s;

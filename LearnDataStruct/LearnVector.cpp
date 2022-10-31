@@ -1,5 +1,7 @@
 #include <iostream>
+#include "vector.h"
 int main()
 {
-	std::cout << "hello vector" << std::endl;
+    Foo<double> obj(1.23);
+    std::cout << obj << '\n';
 }

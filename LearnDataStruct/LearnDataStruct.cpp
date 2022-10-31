@@ -3,7 +3,6 @@
 
 #include "LearnDataStruct.h"
 #include "arrayList.h"
-
 using namespace std;
 
 int main()
@@ -14,7 +13,10 @@ int main()
 	{
 		a.insert(0,i);
 	}
-	std::cout << a.capacity() << std::endl;
-	a.output(std::cout);
+	std::cout <<"a.capatity = " << a.capacity() << std::endl;
+	//a.output(std::cout);
+	std::cout << a << std::endl;
+
+
 	return 0;
 }

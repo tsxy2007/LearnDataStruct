@@ -18,6 +18,4 @@ public:
 	virtual void erase(int theIndex) = 0;
 	// 把theElement插入线性表中索引为theIndex的位置上
 	virtual void insert(int theInex, const T& theElement) = 0;
-	//把线性表插入输出流out
-	virtual void output(std::ostream& out) const = 0;
 };
