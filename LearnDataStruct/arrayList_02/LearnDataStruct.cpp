@@ -32,5 +32,6 @@ int main()
 		std::cout << (i) << ' ';
 	}
 	std::cout << std::endl;
+	std::vector<int> n;
 	return 0;
 }
