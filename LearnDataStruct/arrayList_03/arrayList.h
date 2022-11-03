@@ -64,20 +64,20 @@ protected:
 	T* position;
 };
 
-template<typename T>
+template<typename T,size_t N>
 class arrayList;
 
-template<typename T>
-std::ostream& operator<<(std::ostream&, const arrayList<T>&);
+template<typename T,size_t N>
+std::ostream& operator<<(std::ostream&, const arrayList<T,N>&);
 
-template<typename T>
+template<typename T, size_t N>
 class arrayList : public linearList<T>
 {
 	using iterator = iterator<T>;
 public:
 	// 构造函数,复制构造函数和析构函数
 	arrayList(int initialCcapacity = 10);
-	arrayList(const arrayList<T>& other);
+	arrayList(const arrayList<T,N>& other);
 	~arrayList()
 	{
 		delete[]element;
@@ -95,7 +95,7 @@ public:
 	int capacity()const { return arrayLength; }
 
 	// 涉指对于这个特定的 T 的全特化 
-	friend std::ostream& operator<< <T>(std::ostream& out, const arrayList<T>& InArray);
+	friend std::ostream& operator<< <T,N>(std::ostream& out, const arrayList<T,N>& InArray);
 
 	iterator begin();
 	iterator end();
@@ -115,10 +115,11 @@ protected:
 	T* element;// 存储线性表元素的一维数组
 	int arrayLength; // 一维数组的容量
 	int listSize;//线性表的元素个数
+	int ExpansionCount;
 };
 
-template<typename T>
-inline arrayList<T>::arrayList(int initialCcapacity)
+template<typename T,size_t N>
+inline arrayList<T,N>::arrayList(int initialCcapacity)
 {
 	if (initialCcapacity < 1)
 	{
@@ -130,26 +131,28 @@ inline arrayList<T>::arrayList(int initialCcapacity)
 	arrayLength = initialCcapacity;
 	element = new T[arrayLength];
 	listSize = 0;
+	ExpansionCount = N;
 }
 
-template<typename T>
-inline arrayList<T>::arrayList(const arrayList<T>& other)
+template<typename T,size_t N>
+inline arrayList<T, N>::arrayList(const arrayList<T,N>& other)
 {
 	arrayLength = other.arrayLength;
 	listSize = other.listSize;
 	element = new T[arrayLength];
+	ExpansionCount = other.ExpansionCount;
 	std::copy(other.element, other.element + listSize, element);
 }
 
-template<typename T>
-inline T& arrayList<T>::get(int theIndex) const
+template<typename T,size_t N>
+inline T& arrayList<T, N>::get(int theIndex) const
 {
 	checkIndex(theIndex);
 	return element[theIndex];
 }
 
-template<typename T>
-inline int arrayList<T>::indexOf(const T& theElement) const
+template<typename T,size_t N>
+inline int arrayList<T, N>::indexOf(const T& theElement) const
 {
 	// 查找元素theElement
 	int theIndex = (int)(std::find(element, element + listSize, theElement) - element);
@@ -159,8 +162,8 @@ inline int arrayList<T>::indexOf(const T& theElement) const
 	return theIndex;
 }
 
-template<typename T>
-inline void arrayList<T>::erase(int theIndex)
+template<typename T,size_t N>
+inline void arrayList<T,N>::erase(int theIndex)
 {
 	// 先检查theindex是否存在
 	checkIndex(theIndex);
@@ -175,8 +178,8 @@ inline void arrayList<T>::erase(int theIndex)
 	}
 }
 
-template<typename T>
-inline void arrayList<T>::insert(int theIndex, const T& theElement)
+template<typename T,size_t N>
+inline void arrayList<T, N>::insert(int theIndex, const T& theElement)
 {
 	// 在索引theIndex处插入元素theElement
 	if (theIndex <0 || theIndex > listSize)
@@ -190,8 +193,9 @@ inline void arrayList<T>::insert(int theIndex, const T& theElement)
 	if (listSize == arrayLength)
 	{
 		// 数组空间已满，数组长度倍增
-		changeLengh1D(element, arrayLength, 2 * arrayLength);
-		arrayLength *= 2;
+		int newSize = (ExpansionCount == -1) ? 2 * arrayLength : arrayLength + ExpansionCount;
+		changeLengh1D(element, arrayLength, newSize);
+		arrayLength = newSize;
 	}
 
 	// 把元素向右移动一位
@@ -201,11 +205,11 @@ inline void arrayList<T>::insert(int theIndex, const T& theElement)
 	listSize++;
 }
 
-template<typename T>
-std::ostream& operator<<(std::ostream& os,const arrayList<T>& InArray)
+template<typename T,size_t N>
+std::ostream& operator<<(std::ostream& os,const arrayList<T,N>& InArray)
 {
 	// TODO: insert return statement here
-	arrayList<T> tmpArray = InArray;
+	arrayList<T,N> tmpArray = InArray;
 	for (auto iter : tmpArray)
 	{
 		os << iter << ' ';
@@ -214,34 +218,34 @@ std::ostream& operator<<(std::ostream& os,const arrayList<T>& InArray)
 	return os;
 }
 
-template<typename T>
-inline arrayList<T>::iterator arrayList<T>::begin()
+template<typename T,size_t N>
+inline arrayList<T,N>::iterator arrayList<T,N>::begin()
 {
 	return iterator(element);
 }
 
-template<typename T>
-inline arrayList<T>::iterator arrayList<T>::end()
+template<typename T,size_t N>
+inline arrayList<T,N>::iterator arrayList<T,N>::end()
 {
 	return iterator(element + listSize);
 }
 
-template<typename T>
-inline T& arrayList<T>::operator[](const int _pos) noexcept
+template<typename T,size_t N>
+inline T& arrayList<T,N>::operator[](const int _pos) noexcept
 {
 	// TODO: insert return statement here
 	return element[_pos];
 }
 
-template<typename T>
-inline const T& arrayList<T>::operator[](const int _pos) const noexcept
+template<typename T,size_t N>
+inline const T& arrayList<T,N>::operator[](const int _pos) const noexcept
 {
 	// TODO: insert return statement here
 	return element[_pos];
 }
 
-template<typename T>
-inline void arrayList<T>::checkIndex(int theIndex) const
+template<typename T,size_t N>
+inline void arrayList<T,N>::checkIndex(int theIndex) const
 {
 	if (theIndex < 0 || theIndex >= listSize)
 	{
@@ -251,8 +255,8 @@ inline void arrayList<T>::checkIndex(int theIndex) const
 	}
 }
 
-template<typename T>
-inline void arrayList<T>::changeLengh1D(T* SrcElement, int OldSize, int NewSize)
+template<typename T,size_t N>
+inline void arrayList<T,N>::changeLengh1D(T* SrcElement, int OldSize, int NewSize)
 {
 	if (NewSize < OldSize)
 	{
@@ -270,8 +274,8 @@ inline void arrayList<T>::changeLengh1D(T* SrcElement, int OldSize, int NewSize)
 	element = newElement;
 }
 
-template<typename T>
-inline void arrayList<T>::changeLengh1D_half(T* SrcElement, int OldSize, int NewSize)
+template<typename T,size_t N>
+inline void arrayList<T,N>::changeLengh1D_half(T* SrcElement, int OldSize, int NewSize)
 {
 	if (NewSize < OldSize)
 	{
