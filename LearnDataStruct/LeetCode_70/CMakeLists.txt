@@ -1,10 +1,10 @@
 ﻿# CMakeList.txt : CMake project for LearnDataStruct, include source and define
 # project specific logic here.
 #
+cmake_minimum_required (VERSION 3.8)
 
-add_subdirectory ("arrayList_01")
-add_subdirectory ("arrayList_02")
-add_subdirectory ("arrayList_03")
-add_subdirectory ("LeetCode_70")
+# Add source to this project's executable.
+add_executable (LeetCode_70 "main.cpp")
+
 
 # TODO: Add tests and install targets if needed.
