@@ -25,6 +25,43 @@ namespace MySTL
 		{
 			return *operator->();
 		}
+
+		Array_const_iterator& operator++
+		{
+			++_idx;
+			return *this;
+		}
+
+		Array_const_iterator operator++(int)
+		{
+			Array_const_iterator tmp = *this;
+			++* this;
+			return tmp;
+		}
+
+		Array_const_iterator& operator-()
+		{
+			--_idx;
+			return *this;
+		}
+
+		Array_const_iterator operator--(int)
+		{
+			Array_const_iterator tmp = *this;
+			--* this;
+			return tmp;
+		}
+
+		Array_const_iterator& operator+=(const ptrdiff_t off)
+		{
+			_idx += static_cast<size_t>(off);
+			return *this;
+		}
+
+		Array_const_iterator& operator-(const ptrdiff_t off)
+		{
+			return *this += off;
+		}
 	private:
 		void checkIndex(int theIndex) const
 		{
