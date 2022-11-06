@@ -5,6 +5,7 @@
 add_subdirectory ("arrayList_01")
 add_subdirectory ("arrayList_02")
 add_subdirectory ("arrayList_03")
-add_subdirectory ("LeetCode_70")
+add_subdirectory ("LeetCode_070")
+add_subdirectory ("LeetCode_001")
 
 # TODO: Add tests and install targets if needed.

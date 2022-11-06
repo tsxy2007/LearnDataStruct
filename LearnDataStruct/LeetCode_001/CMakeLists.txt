@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Add source to this project's executable.
-add_executable (LeetCode_70 "main.cpp")
+add_executable (LeetCode_001 "main.cpp")
 
 
 # TODO: Add tests and install targets if needed.
