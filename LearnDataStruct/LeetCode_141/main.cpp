@@ -27,18 +27,18 @@ bool hasCycle(ListNode* head)
 		return false;
 	}
 	ListNode* slowPtr = head;
-	ListNode* fastPtr = head;
+	ListNode* fastPtr = head->next;
 
-	while (slowPtr->next && fastPtr->next && fastPtr->next->next)
+	while (slowPtr != fastPtr)
 	{
+		if (fastPtr == nullptr || fastPtr->next == nullptr)
+		{
+			return false;
+		}
 		slowPtr = slowPtr->next;
 		fastPtr = fastPtr->next->next;
-		if (slowPtr == fastPtr)
-		{
-			return true;
-		}
 	}
-	return false;
+	return true;
 }
 
 // HashMap 记录路过节点时间效率O(n) 空间复杂度O(n)
