@@ -37,7 +37,7 @@ int main()
 	std::vector<int> n;
 	std::array<int, 10> c{1,2,4,4,5,5,5,5};
 
-	MySTL::array<int, 5> mc;
+	MySTL::array<int,10> mc;
 
 	for (int i = 0; i < mc.size(); i++)
 	{

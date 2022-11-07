@@ -127,6 +127,7 @@ namespace MySTL
 	template <class _Ty, size_t Size>
 	class _Array_iterator : public _Array_const_iterator<_Ty, Size>
 	{
+
 		using _Mybase = _Array_const_iterator<_Ty, Size>;
 
 		using iterator_category = random_access_iterator_tag;
@@ -134,7 +135,7 @@ namespace MySTL
 		using difference_type = ptrdiff_t;
 		using pointer = _Ty*;
 		using reference = _Ty&;
-		
+	public:
 		_Array_iterator(){}
 
 		explicit _Array_iterator(pointer _Parg,size_t _off = 0 ):_Mybase(_Parg,_off){}
@@ -366,7 +367,7 @@ namespace MySTL
 
 	template <class _First, class... _Rest>
 	struct _Enforce_same {
-		static_assert(conjunction_v<is_same<_First, _Rest>...>,
+		static_assert(std::conjunction_v<std::is_same<_First, _Rest>...>,
 			"N4687 26.3.7.2 [array.cons]/2: "
 			"Requires: (is_same_v<T, U> && ...) is true. Otherwise the program is ill-formed.");
 		using type = _First;
