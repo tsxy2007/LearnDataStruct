@@ -76,6 +76,7 @@ int main()
 {
 
 	{
+		std::cout << "--------------使用正常方法--------------------" << std::endl;
 		ListNode* list4 = new ListNode(5, nullptr);
 		ListNode* list3 = new ListNode(4, list4);
 		ListNode* list2 = new ListNode(3, list3);
@@ -93,7 +94,7 @@ int main()
 		std::cout << hasCycle(list1) << std::endl;
 	}
 
-	std::cout << "--------------------------------------" << std::endl;
+	std::cout << "--------------使用递归------------------------" << std::endl;
 	{
 		ListNode* list4 = new ListNode(5, nullptr);
 		ListNode* list3 = new ListNode(4, list4);
