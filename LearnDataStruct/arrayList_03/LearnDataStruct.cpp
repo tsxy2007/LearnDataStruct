@@ -5,6 +5,7 @@
 #include "arrayList.h"
 #include <vector>
 #include <array>
+#include "array.h"
 int main()
 {
 	arrayList<int,12> a(10);
@@ -34,6 +35,17 @@ int main()
 	}
 	std::cout << std::endl;
 	std::vector<int> n;
-	std::array<int, 10> c;
+	std::array<int, 10> c{1,2,4,4,5,5,5,5};
+
+	MySTL::array<int, 5> mc;
+
+	for (int i = 0; i < mc.size(); i++)
+	{
+		mc[i] = i;
+	}
+	for (auto Iter = mc.begin(); Iter != mc.end(); ++Iter)
+	{
+		std::cout << *Iter << " ";
+	}
 	return 0;
 }
