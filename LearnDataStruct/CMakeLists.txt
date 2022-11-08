@@ -15,5 +15,8 @@ add_subdirectory ("LeetCode_083")
 add_subdirectory ("LeetCode_141")
 add_subdirectory ("LeetCode_142")
 add_subdirectory ("LeetCode_160")
+add_subdirectory ("LeetCode_206")
+add_subdirectory ("LeetCode_234")
+add_subdirectory ("LeetCode_876")
 
 # TODO: Add tests and install targets if needed.
