@@ -43,9 +43,9 @@ int main()
 	{
 		mc[i] = i;
 	}
-	for (auto Iter = mc.begin(); Iter != mc.end(); ++Iter)
+	/*for (auto Iter = mc.begin(); Iter != mc.end(); ++Iter)
 	{
 		std::cout << *Iter << " ";
-	}
+	}*/
 	return 0;
 }
