@@ -78,6 +78,45 @@ ListNode* getIntersectionNode_02(ListNode* headA, ListNode* headB)
 	return nullptr;
 }
 
+// 方法四: 两个链表最长-最短 = d，然后从最长的d位置和最短的起始位置开始循环
+
+ListNode* getIntersectionNode_03(ListNode* headA, ListNode* headB)
+{
+	ListNode* TailA = headA;
+	ListNode* TailB = headB;
+	auto func = [](ListNode* TailA)
+	{
+		int sizeA = 0;
+		while (TailA)
+		{
+			sizeA += 1;
+			TailA = TailA->next;
+		}
+		return sizeA;
+	};
+
+	int sizeA = func(TailA);
+	int sizeB = func(TailB);
+	int off = std::abs(sizeA - sizeB);
+	bool bAlong = sizeA > sizeB;
+	ListNode* TMaxTail = bAlong ? headA : headB;
+	ListNode* TMinTail = bAlong ? headB : headA;
+	while (TMaxTail != TMinTail)
+	{
+		TMaxTail = TMaxTail->next;
+		if (off)
+		{
+			off--;
+		}
+		else
+		{
+			TMinTail = TMinTail->next;
+		}
+	}
+
+	return TMinTail;
+}
+
 void print(ListNode* list1)
 {
 	ListNode* Tail = list1;
@@ -142,6 +181,25 @@ int main()
 		list2->next = list2_;
 
 		ListNode* IntersectionNode = getIntersectionNode_02(list1, list1_);
+		int result = IntersectionNode ? IntersectionNode->val : -1;
+		std::cout << "值是 = " << result << std::endl;
+	}
+
+
+	{
+		std::cout << "--------------使用offset方法------------------" << std::endl;
+
+
+		ListNode* list2 = new ListNode(6, nullptr);
+		ListNode* list1 = new ListNode(2, list2);
+
+		ListNode* list4_ = new ListNode(5, nullptr);
+		ListNode* list3_ = new ListNode(4, list4_);
+		ListNode* list2_ = new ListNode(3, list3_);
+		ListNode* list1_ = new ListNode(1, list2_);
+		list2->next = list2_;
+
+		ListNode* IntersectionNode = getIntersectionNode_03(list1, list1_);
 		int result = IntersectionNode ? IntersectionNode->val : -1;
 		std::cout << "值是 = " << result << std::endl;
 	}
