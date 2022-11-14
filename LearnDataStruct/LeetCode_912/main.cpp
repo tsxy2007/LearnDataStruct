@@ -204,6 +204,12 @@ std::vector<int> sortArray_06(std::vector<int>& nums)
 	return merge(newHalf1, newHalf2);
 }
 
+// 堆排序
+std::vector<int> sortArray_07(std::vector<int>& nums)
+{
+
+	return nums;
+}
 
 void print(const std::vector<int>& nums)
 {
@@ -222,7 +228,8 @@ int main()
 	//std::vector<int> result = sortArray_03(a);
 	//std::vector<int> result = sortArray_04(a);
 	//std::vector<int> result = sortArray_05(a);
-	std::vector<int> result = sortArray_06(a);
+	//std::vector<int> result = sortArray_06(a);
+	std::vector<int> result = sortArray_07(a);
 	print(result);
 	return 0;
 }
