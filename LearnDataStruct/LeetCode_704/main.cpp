@@ -62,21 +62,54 @@ int searchbyBinary(std::vector<int>& nums, int target, int start, int end)
 
 int search_02(std::vector<int>& nums, int target)
 {
-	for (size_t i = 0; i < nums.size(); i++)
-	{
-		if (nums[i] == target)
-			return i;
-	}
 	return searchbyBinary(nums, target, 0, nums.size());
 }
 
+// 方法三: 插值查找
+
+int searchbyBinary_03(std::vector<int>& nums, int target, int start, int end)
+{
+	if (start >= nums.size())
+	{
+		return -1;
+	}
+	if (start == end)
+	{
+		if (nums[start] == target)
+		{
+			return start;
+		}
+		return -1;
+	}
+	// 和二分查找唯一区别就是这里
+	int mid = start - 1 + ((target - nums[start]) * (end - start)) / (nums[end - 1] - nums[start]);
+	int midValue = nums[mid];
+	if (midValue == target)
+	{
+		return mid;
+	}
+	else if (midValue > target)
+	{
+		return searchbyBinary_03(nums, target, start, mid);
+	}
+	else
+	{
+		return searchbyBinary_03(nums, target, mid + 1, end);
+	}
+}
+
+int search_03(std::vector<int>& nums, int target)
+{
+	return searchbyBinary_03(nums, target, 0, nums.size());
+}
 
 int main()
 {
 	std::vector<int> a{ -1,0,3,5,9,12 };
 
 	//int index = search_01(a,9);
-	int index = search_02(a,-2);
+	//int index = search_02(a,12);
+	int index = search_03(a,12); 
 	std::cout << "index = " << index << std::endl;
-	return 0;
+	return 0; 
 }
