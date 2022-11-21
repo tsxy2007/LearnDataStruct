@@ -20,6 +20,18 @@ std::vector<int> countBits(int n)
 	return result;
 }
 
+//方法二: 根据奇偶性求解
+std::vector<int> countBits_01(int n)
+{
+	std::vector<int> result(n + 1, 0);
+	for (size_t i = 1; i <= n; i++)
+	{
+		result[i] = i % 2 == 0 ? result[i >> 1] : result[i - 1] + 1;
+	}
+	return result;
+}
+
+
 void print(const std::vector<int>& result01)
 {
 	for (int i = 0; i < result01.size(); i++)
@@ -33,5 +45,8 @@ int main()
 {
 	std::vector<int> nums = countBits(5);
 	print(nums);
+
+	std::vector<int> nums1 = countBits_01(5);
+	print(nums1);
 	return 0;
 }
