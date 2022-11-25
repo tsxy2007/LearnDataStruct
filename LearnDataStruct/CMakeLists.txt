@@ -33,5 +33,13 @@ add_subdirectory ("LeetCode_704")
 add_subdirectory ("offer_000") 
 add_subdirectory ("LeetCode_136") 
 add_subdirectory ("LeetCode_338") 
+add_subdirectory ("LeetCode_020") 
+add_subdirectory ("LeetCode_415") 
+add_subdirectory ("string_001") 
+add_subdirectory ("LearnDP_001") 
+add_subdirectory ("LearnDP_002") 
+add_subdirectory ("LearnDP_003") 
+add_subdirectory ("LearnDP_004") 
+add_subdirectory ("LearnDP_005") 
 
 # TODO: Add tests and install targets if needed.
