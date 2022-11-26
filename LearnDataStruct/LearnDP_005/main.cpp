@@ -96,7 +96,7 @@ std::string minus_02(std::vector<int>& sticker, std::vector<int>& target)
 	return minus;
 }
 
-int process_02(std::vector<std::vector<int>> istickers, std::string target)
+int process_02(std::vector<std::vector<int>>& istickers, std::string target)
 {
 	if (target.empty())
 	{
@@ -137,7 +137,7 @@ int minStickers_02(std::vector<std::string>& stickers, std::string target)
 // 使用hashmap记录最优解
 
 
-int process_03(std::vector<std::vector<int>> istickers, std::string target, std::unordered_map<std::string, int>& dp)
+int process_03(std::vector<std::vector<int>>& istickers, std::string target, std::unordered_map<std::string, int>& dp)
 {
 	if ( dp.find(target) != dp.end())
 	{
