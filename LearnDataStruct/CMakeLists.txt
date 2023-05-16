@@ -43,5 +43,10 @@ add_subdirectory ("LearnDP_003")
 add_subdirectory ("LearnDP_004") 
 add_subdirectory ("LearnDP_005") 
 add_subdirectory ("LeetCode_003") 
+add_subdirectory ("LearnDP_006") 
+add_subdirectory ("LearnDP_007") 
+add_subdirectory ("LearnDP_008") 
+add_subdirectory ("LearnDP_009") 
+add_subdirectory ("LeetCode_121") 
 
 # TODO: Add tests and install targets if needed.
